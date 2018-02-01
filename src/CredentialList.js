@@ -34,7 +34,6 @@ export default class CredentialList extends React.Component {
 
         this.ratticService.getCredentialList(page)
             .then(data => {
-                console.log(data);
                 if (data && data.objects) {
                     self.setState(function (previousState) {
                         return {
@@ -47,7 +46,6 @@ export default class CredentialList extends React.Component {
                 if (data.objects.length === self.ratticService.getPageSize()) {
                     self.loadCredsFromUrl(page + 1);
                 } else {
-                    console.log("got no next page");
                     self.setState(function (previousState) {
                         previousState.data.sort(sortStr);
                         return {

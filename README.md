@@ -30,5 +30,5 @@ npm run dev
 To build the app alone (results are in the ``dist`` folder):
 ```
 npm install -g webpack@3.10.0
-webpack -p
+webpack -p --define MOCK_API=false
 ```

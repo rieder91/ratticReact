@@ -2,86 +2,94 @@
  * Created by trieder on 15.09.2015.
  */
 import React from 'react'
-import ratticURL from './Globals'
+import {ratticURL} from './Globals'
 
-export default React.createClass({
+export default class Settings extends React.Component {
 
-    getInitialState: function () {
+    constructor(props, context) {
+        super(props, context);
+
         // load from local storage
-        return {
+        this.state = {
             username: localStorage.getItem("username") ? localStorage.getItem("username") : "",
             apikey: localStorage.getItem("apikey") ? localStorage.getItem("apikey") : "",
             visible: false
         };
-    },
 
-    showSettings: function () {
+        this.showSettings = this.showSettings.bind(this);
+        this.hideSettings = this.hideSettings.bind(this);
+        this.saveUsername = this.saveUsername.bind(this);
+        this.saveAPIKey = this.saveAPIKey.bind(this);
+    }
+
+    showSettings() {
         this.setState({
             visible: true
         });
-    },
+    }
 
-    hideSettings: function () {
+    hideSettings() {
         this.setState({
             visible: false
         });
-    },
+    }
 
-    saveUsername: function (event) {
+    saveUsername(event) {
         // save to local storage
         this.setState({
             username: event.target.value
         });
         localStorage.setItem("username", event.target.value);
+    }
 
-    },
-
-    saveAPIKey: function (event) {
+    saveAPIKey(event) {
         // save to local storage
         this.setState({
             apikey: event.target.value
         });
         localStorage.setItem("apikey", event.target.value);
-    },
+    }
 
-    reloadPage: function () {
+    reloadPage() {
         location.reload();
-    },
+    }
 
-    render: function () {
+    render() {
+        let {visible, apikey, username} = this.state;
 
-        var inputStyle = {"marginRight": "15px"};
+        const inputStyle = {"marginRight": "15px"};
 
-        if (this.state.visible) {
+        if (visible) {
             return (
                 <form className="navbar-form navbar-right">
                     <button id="toggle-settings-btn" className="btn btn-link" type="button" onClick={this.hideSettings}>
-                        <span className="glyphicon glyphicon-cog"></span>
+                        <span className="glyphicon glyphicon-cog"/>
                     </button>
                     <button className="btn btn-link" onClick={this.reloadPage}>
-                        <span className="glyphicon glyphicon-refresh"></span>
+                        <span className="glyphicon glyphicon-refresh"/>
                     </button>
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Username" value={this.state.username} onChange={this.saveUsername} style={inputStyle}/>
-                        <input type="text" className="form-control" placeholder="API Key" size="10" value={this.state.apikey} onChange={this.saveAPIKey}/>
+                        <input type="text" className="form-control" placeholder="Username" value={username}
+                               onChange={this.saveUsername} style={inputStyle}/>
+                        <input type="text" className="form-control" placeholder="API Key" size="10"
+                               value={apikey} onChange={this.saveAPIKey}/>
                     </div>
                 </form>
-                );
+            );
         } else {
             return (
                 <form className="navbar-form navbar-right">
-                    <a className="btn btn-link" href={ ratticURL + "/cred/add/" } target="_blank">
-                        <span className="glyphicon glyphicon-plus"></span>
+                    <a className="btn btn-link" href={ratticURL + "/cred/add/"} target="_blank">
+                        <span className="glyphicon glyphicon-plus"/>
                     </a>
                     <button className="btn btn-link" onClick={this.reloadPage}>
-                        <span className="glyphicon glyphicon-refresh"></span>
+                        <span className="glyphicon glyphicon-refresh"/>
                     </button>
                     <button id="toggle-settings-btn" className="btn btn-link" type="button" onClick={this.showSettings}>
-                        <span className="glyphicon glyphicon-cog"></span>
+                        <span className="glyphicon glyphicon-cog"/>
                     </button>
                 </form>
-                );
+            );
         }
     }
-});
-
+}

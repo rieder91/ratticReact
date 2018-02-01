@@ -1,31 +1,35 @@
 {
   "name": "rattic-react",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A react based frontend for the Rattic password database.",
   "author": "Thomas Rieder",
   "license": "ISC",
   "scripts": {
-    "start": "webpack-dev-server --inline --content-base ."
+    "prod": "webpack-dev-server --define MOCK_API=false --inline --content-base .",
+    "dev": "webpack-dev-server --define MOCK_API=true --inline --content-base ."
   },
   "main": "index.js",
   "dependencies": {
-    "css-loader": "^0.23.1",
-    "expose-loader": "^0.7.1",
-    "file-loader": "^0.8.5",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "react-router": "^2.0.0",
-    "style-loader": "^0.13.0",
-    "url-loader": "^0.5.7"
+    "clipboard": "^1.7.1",
+    "combokeys": "^3.0.0",
+    "jquery": "^3.3.1",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "react-router": "^2.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.5.1",
-    "babel-loader": "^6.2.2",
-    "babel-preset-es2015": "^6.5.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.5.0",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "http-server": "^0.8.5",
-    "webpack": "^1.12.13",
-    "webpack-dev-server": "^1.14.1"
+    "css-loader": "^0.28.9",
+    "expose-loader": "^0.7.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "http-server": "^0.11.1",
+    "style-loader": "^0.20.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   }
 }

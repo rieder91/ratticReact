@@ -4,32 +4,48 @@
 import React from 'react'
 import PasswordPopup from './PasswordPopup'
 import CredentialList from './CredentialList'
+import $ from 'jquery'
+import Combokeys from "combokeys"
 
 
-export default React.createClass({
+export default class SearchBox extends React.Component {
+    constructor(props, context) {
+        super(props, context);
 
-    getInitialState: function() {
-        return {
+        this.state = {
             query: '',
             credCount: 0
         };
-    },
 
-    handleChange: function(event) {
+        this.handleChange = this.handleChange.bind(this);
+        this.updateCredCount = this.updateCredCount.bind(this);
+        this.showPassword = this.showPassword.bind(this);
+        this.clearProps = this.clearProps.bind(this);
+    }
+
+    componentDidMount() {
+        const combokeys = new Combokeys(document.documentElement);
+        combokeys.bind('ctrl+f', function (e) {
+            $("#searchBox").focus();
+            return false;
+        });
+    }
+
+    handleChange(event) {
         this.setState({
             query: event.target.value
         });
-    },
+    }
 
-    updateCredCount: function (count) {
+    updateCredCount(count) {
         if (count) {
             this.setState({
                 credCount: count
             });
         }
-    },
+    }
 
-    showPassword: function(id, user, pw, title, url, description) {
+    showPassword(id, user, pw, title, url, description) {
         this.setState({
             password: pw,
             username: user,
@@ -38,11 +54,11 @@ export default React.createClass({
             description: description
         });
         // set display style of dim to block
-        $('#dimmer').css('display','block');
+        $('#dimmer').css('display', 'block');
         $(document.body).on('keydown', this.handleKeyDown);
-    },
+    }
 
-    clearProps: function() {
+    clearProps() {
         this.setState({
             password: "",
             username: "",
@@ -50,34 +66,33 @@ export default React.createClass({
             title: "",
             description: ""
         });
-        $('#dimmer').css('display','none');
+        $('#dimmer').css('display', 'none');
         $(document.body).off('keydown', this.handleKeyDown);
-    },
+    }
 
-    handleKeyDown: function (event) {
-        if (event.keyCode == 27 /*esc*/) {
+    handleKeyDown(event) {
+        if (event.keyCode === 27 /*esc*/) {
             this.clearProps();
         }
-    },
+    }
 
-
-    render: function () {
-
-        var query = this.state.query;
-        var credCount = this.state.credCount;
+    render() {
+        let {query, credCount, username, password, title, url, description} = this.state;
 
         return (
             <div className="searchBox">
-                <PasswordPopup username={this.state.username} password={this.state.password} title={this.state.title} url={this.state.url} description={this.state.description} />
-                <div id="dimmer" onClick={this.clearProps}></div>
+                <PasswordPopup username={username} password={password} title={title}
+                               url={url} description={description}/>
+                <div id="dimmer" onClick={this.clearProps}/>
                 <div className="input-group" id="search-input">
-                    <input type="text" className="form-control input-lg" id="searchBox" aria-describedby="cred-count" placeholder="Type to search" value={query} onChange={this.handleChange} />
+                    <input type="text" className="form-control input-lg" id="searchBox" aria-describedby="cred-count"
+                           placeholder="Type to search" value={query} onChange={this.handleChange}/>
                     <span className="input-group-addon" id="cred-count">{credCount} credentials loaded</span>
                 </div>
-                <CredentialList query={query} showPassword={this.showPassword} updateCredCount={this.updateCredCount} />
+                <CredentialList query={query} showPassword={this.showPassword} updateCredCount={this.updateCredCount}/>
             </div>
         );
     }
-});
+}
 
 

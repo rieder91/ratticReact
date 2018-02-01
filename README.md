@@ -17,13 +17,18 @@ To compile everything and run it locally you can use:
 
 ```
 npm install
-npm start
+
+# connect to an actual rattic API
+npm run prod
+
+# use a fixture
+npm run dev
 ```
 
 ## Building
 
 To build the app alone (results are in the ``dist`` folder):
 ```
-npm install -g webpack
-webpack
+npm install -g webpack@3.10.0
+webpack -p
 ```

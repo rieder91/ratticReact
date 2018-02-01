@@ -2,50 +2,50 @@
  * Created by thomasrieder on 14.09.15.
  */
 import React from 'react'
-import ratticURL from './Globals'
+import {ratticURL} from './Globals'
+import getRatticService from './service/RatticServiceBuilder';
 
-export default React.createClass({
+export default class Credential extends React.Component {
 
-    onClick: function () {
+    constructor() {
+        super();
+        this.ratticService = getRatticService();
 
-        var that = this;
-        $.ajax({
-            url: ratticURL + "/api/v1/cred/" + this.props.credId + "?format=json",
-            dataType: 'json',
-            cache: false,
-            headers: {
-                "Authorization": "ApiKey " + localStorage.getItem("username") + ":" + localStorage.getItem("apikey")
-            },
-            success: function (data) {
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick() {
+        const self = this;
+        this.ratticService.getCredential(self.props.credId)
+            .then(data => {
                 if (data && data.password) {
-                    that.props.showPassword(data.username, data.password, that.props.name, data.url, data.description);
+                    self.props.showPassword(data.username, data.password, self.props.name, data.url, data.description);
                 }
+            })
+            .catch(err => {
+                console.error(err.toString());
+            });
+    }
 
-            }.bind(this),
-            error: function (xhr, status, err) {
-                console.error(status, err.toString());
-            }.bind(this)
-        });
-    },
-
-    render: function () {
+    render() {
+        let {name, url, username, credId} = this.props;
         return (
             <tr className="credential noselect" onClick={this.onClick}>
                 <td>
-                    {this.props.name}
+                    {name}
                 </td>
                 <td>
-                    <a href={this.props.url} target="_blank">{this.props.url}</a>
+                    <a href={url} target="_blank">{url}</a>
                 </td>
                 <td>
-                    {this.props.username}
+                    {username}
                 </td>
                 <td>
-                    <a href={ratticURL + "/cred/detail/" + this.props.credId + "/"} target="_blank">
-                        <span className="glyphicon glyphicon-new-window"></span>
+                    <a href={ratticURL + "/cred/detail/" + credId + "/"} target="_blank">
+                        <span className="glyphicon glyphicon-new-window"/>
                     </a>
                 </td>
             </tr>
         );
     }
-});
+}

@@ -4,3 +4,4 @@ node_modules/react-popup
 *.iml
 node_modules
 dist
+package-lock.json

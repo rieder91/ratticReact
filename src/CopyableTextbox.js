@@ -60,7 +60,7 @@ export default class CredentialList extends React.Component {
 
 
     render() {
-        let {label, value, secret, isLink} = this.props;
+        let {label, value, secret, isLink, showIfEmpty} = this.props;
         let {hidden} = this.state;
 
         let prefix = label.toLowerCase().replace(" ", "-");
@@ -98,7 +98,7 @@ export default class CredentialList extends React.Component {
                     </div>
                 </div>
             )
-        } else {
+        } else if (showIfEmpty) {
             return (
                 <div className="form-group">
                     <label htmlFor={label} className="col-sm-2 control-label">{label}</label>
@@ -110,6 +110,8 @@ export default class CredentialList extends React.Component {
                     </div>
                 </div>
             )
+        } else {
+            return <div/>
         }
     }
 }

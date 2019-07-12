@@ -124,6 +124,7 @@ export default class CredentialList extends React.Component {
                 <table className="table">
                     <thead>
                     <tr>
+                        <th/>
                         <th>Name</th>
                         <th>URL</th>
                         <th>Username</th>

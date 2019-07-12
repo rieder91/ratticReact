@@ -158,6 +158,54 @@ const FIXTURE = {
             "url": "https://www.facebook.com",
             "username": "Francis Barnes",
             "password": "ThisShouldBeHidden!"
+        },
+        {
+            "attachment_name": null,
+            "created": "2015-09-10T19:14:26.871391",
+            "description": "",
+            "descriptionmarkdown": false,
+            "iconname": "Globe.png",
+            "id": 617,
+            "modified": "2015-09-10T19:14:26.871166",
+            "on_changeq": true,
+            "resource_uri": "/api/v1/cred/416/",
+            "ssh_key_name": null,
+            "title": "No Username",
+            "url": "https://www.anandtech.com",
+            "username": "",
+            "password": "ThisShouldBeHidden!"
+        },
+        {
+            "attachment_name": null,
+            "created": "2015-09-10T19:14:26.871391",
+            "description": "",
+            "descriptionmarkdown": false,
+            "iconname": "Globe.png",
+            "id": 618,
+            "modified": "2015-09-10T19:14:26.871166",
+            "on_changeq": true,
+            "resource_uri": "/api/v1/cred/416/",
+            "ssh_key_name": null,
+            "title": "No Password",
+            "url": "https://www.anandtech.com",
+            "username": "user",
+            "password": ""
+        },
+        {
+            "attachment_name": null,
+            "created": "2015-09-10T18:49:29.467836",
+            "description": "Also works for id.atlassian.com",
+            "descriptionmarkdown": false,
+            "iconname": "Key.png",
+            "id": 619,
+            "modified": "2015-09-10T18:49:29.467587",
+            "on_changeq": true,
+            "resource_uri": "/api/v1/cred/373/",
+            "ssh_key_name": null,
+            "title": "Description only",
+            "url": "",
+            "username": "",
+            "password": ""
         }
     ]
 };

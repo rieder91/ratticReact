@@ -25,8 +25,8 @@ export default class SearchBox extends React.Component {
 
     componentDidMount() {
         const combokeys = new Combokeys(document.documentElement);
-        combokeys.bind('ctrl+f', function (e) {
-            $("#searchBox").focus();
+        combokeys.bind(['command+f', 'ctrl+f'], function (e) {
+            $("#searchBox").focus().select();
             return false;
         });
     }

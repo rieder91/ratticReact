@@ -2,7 +2,7 @@ import {ratticURL} from "../Globals";
 import $ from "jquery";
 
 // page size when doing REST requests
-const pageSize = 200;
+const pageSize = 250;
 
 export default class RatticService {
     getPageSize() {

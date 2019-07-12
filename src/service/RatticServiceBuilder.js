@@ -1,11 +1,18 @@
 import {devMode} from '../Globals';
 import MockedRatticService from "./MockedRatticService";
 import RatticService from "./RatticService";
+import RatticCacheWrapper from "./RatticCacheWrapper";
+
+let ratticService = null;
 
 export default function getRatticService() {
-    if (devMode) {
-        return new MockedRatticService();
-    } else {
-        return new RatticService();
+    if (!ratticService) {
+        if (devMode) {
+            ratticService = new RatticCacheWrapper(new MockedRatticService());
+        } else {
+            ratticService = new RatticCacheWrapper(new RatticService());
+        }
     }
+
+    return ratticService;
 }

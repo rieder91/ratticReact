@@ -2,7 +2,7 @@
 
 A simple react-based frontend for the RatticDB password manager incl. search and credential caching.
 
-![Popup](doc/img/popup.png "Popup")
+![List](doc/img/list.png "Password List")
 
 ## Technologies
 

@@ -46,7 +46,7 @@ export default class Credential extends React.Component {
                 <td onClick={(e) => this.cacheCredential(e, credId)}>
                     <span className="glyphicon glyphicon-floppy-disk" aria-hidden="true" style={isCached ? {color: "green"} : {color: "gray"}} />
                 </td>
-                <td style={{wordBreak: "break-all"}}>
+                <td>
                     {name}
                 </td>
                 <td style={{wordBreak: "break-all"}}>

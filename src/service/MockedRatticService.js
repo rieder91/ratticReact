@@ -206,6 +206,22 @@ const FIXTURE = {
             "url": "",
             "username": "",
             "password": ""
+        },
+        {
+            "attachment_name": null,
+            "created": "2019-09-11T18:42:29.467836",
+            "description": "Large Column Test",
+            "descriptionmarkdown": false,
+            "iconname": "Key.png",
+            "id": 620,
+            "modified": "2019-09-11T18:42:29.467836",
+            "on_changeq": true,
+            "resource_uri": "/api/v1/cred/620/",
+            "ssh_key_name": null,
+            "title": "This is a very long description to test what happens to the table!",
+            "url": "http://thisisalongurlincludingacontextpath/contextpathgoeshereandgoesonandonandonandononandonandononandonandononandonandononandonandononandonandon",
+            "username": "",
+            "password": ""
         }
     ]
 };
